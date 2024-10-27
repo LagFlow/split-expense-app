@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { auth, googleProvider } from "../firebaseConfig";
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -29,23 +29,29 @@ function Login() {
 
   return (
     <div>
-      <h2>Iniciar Sesión</h2>
+      <h2 style={{ textAlign: "center" }}>Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="input-field"
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="input-field"
         />
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" className="button" style={{ marginTop: '10px' }}>Iniciar Sesión</button>
       </form>
-      <button onClick={handleGoogleLogin}>Iniciar con Google</button>
+      <div style={{ textAlign: 'right' }}>
+        <button onClick={handleGoogleLogin} style={{ marginTop: '40px' }} className="button-secondary">
+          Iniciar sesión con Google
+        </button>
+      </div>
     </div>
   );
 }

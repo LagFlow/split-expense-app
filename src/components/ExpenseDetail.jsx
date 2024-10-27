@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
 import { doc, getDoc, updateDoc, arrayUnion, deleteDoc } from "firebase/firestore";
@@ -107,43 +107,49 @@ function ExpenseDetail() {
   const amountPerPerson = numPeople > 0 ? (expense.amount / numPeople).toFixed(2) : 0;
 
   return (
-    <div style={{ margin: "20px" }}>
-      <h2>Detalles del Gasto</h2>
-      <p><strong>Nombre:</strong> {expense.name}</p>
-      <p><strong>Detalle:</strong> {expense.detail}</p>
-      <p><strong>Monto Total:</strong> ARS {expense.amount}</p>
+    <div style={{ minWidth: "500px"}}>
+      <div className="expense-details">
+        <h2 style={{ textAlign: "center" }}>Detalles del Gasto</h2>
+        <p><strong>Nombre:</strong> {expense.name}</p>
+        <p><strong>Detalle:</strong> {expense.detail}</p>
+        <p><strong>Monto Total:</strong> ARS {expense.amount}</p>
+      </div>
 
-      <h3>División entre Participantes</h3>
-      <ul>
-        {expense.participants?.map((participant, index) => (
-          <li key={index}>
-            {participant}: ARS {amountPerPerson}
-          </li>
-        ))}
-      </ul>
+      <h3 style={{ textAlign: "center", marginTop: "20px" }}>División entre Participantes</h3>
+      {expense.participants?.length === 0
+        ?  <em>Agrega personas para repartir los gastos</em>
+        : <ul className="expenses-list">
+            {expense.participants?.map((participant, index) => (
+              <li className="expense-item" key={index}>
+                {participant}: ARS {amountPerPerson}
+              </li>
+            ))}
+          </ul>
+      }
 
       {!isFinalized && (
         <>
-          <h3>Agregar Persona</h3>
+          <h3 style={{ marginTop: "20px", textAlign: "center" }}>Agregar Persona</h3>
           <input
             type="text"
             placeholder="Nombre de la persona"
             value={newParticipant}
             onChange={(e) => setNewParticipant(e.target.value)}
+            className="input-field"
           />
-          <button onClick={addParticipant}>Agregar</button>
+          <button onClick={addParticipant} className="button">Agregar</button>
         </>
       )}
 
       {!isFinalized && (
-        <div style={{ marginTop: "20px" }}>
-          <button onClick={finalizeExpense}>Listo</button>
+        <div style={{ marginTop: "40px" }}>
+          <button disabled={expense.participants?.length === 0} onClick={finalizeExpense} className="button" style={{ width: "100%"}}>Listo</button>
         </div>
       )}
 
       {isFinalized && (
         <div style={{ marginTop: "20px" }}>
-          <button onClick={deleteExpense} style={{ backgroundColor: "red", color: "white" }}>
+          <button onClick={deleteExpense} className="button" style={{ width: "100%" }}>
             Eliminar Gasto
           </button>
         </div>

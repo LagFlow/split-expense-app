@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig"; // Asegúrate de tener la configuración de Firebase
 import { signOut } from "firebase/auth";
@@ -30,12 +30,14 @@ function NavBar() {
   };
 
   return (
-    <nav style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-      {/* Muestra el botón de Cerrar sesión solo si hay un usuario autenticado */}
+    <nav className="navbar" style={{ display: user ? 'flex' : 'none' }}>
       {user && (
-        <button onClick={handleLogout} style={{ float: "right" }}>
-          Cerrar sesión
-        </button>
+        <>
+          <span style={{color: 'var(--accent-color)', fontWeight: 'bold', cursor: 'pointer'}} onClick={() => {navigate("/")}}>Split Expense App</span>
+          <button onClick={handleLogout} className="button-logout">
+            Cerrar sesión
+          </button>
+        </>
       )}
     </nav>
   );

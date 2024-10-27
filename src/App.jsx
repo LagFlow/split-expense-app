@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -12,13 +11,15 @@ function App() {
     <Router>
       <div>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/expenses" element={<Expenses />} />
-          <Route path="/expenses/:id" element={<ExpenseDetail />} />
-        </Routes>
+        <div className="main-content">
+          <Routes classN>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/expenses" element={<Expenses />} />
+            <Route path="/expenses/:id" element={<ExpenseDetail />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

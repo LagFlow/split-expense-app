@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -19,14 +19,14 @@ function Home() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Bienvenido a Split Expense App</h1>
+      <h1>Bienvenido a <span style={{ color: 'var(--accent-color)' }}>Split Expense App</span></h1>
       <p>Divide tus gastos de forma equitativa con amigos y familiares.</p>
       <div>
         <Link to="/login">
-          <button style={{ margin: "10px" }}>Iniciar Sesión</button>
+          <button style={{ margin: "10px", width: '120px' }} className="button">Iniciar Sesión</button>
         </Link>
         <Link to="/register">
-          <button style={{ margin: "10px" }}>Registrarse</button>
+          <button style={{ margin: "10px", width: '120px' }} className="button-secondary">Registrarse</button>
         </Link>
       </div>
     </div>

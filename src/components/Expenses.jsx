@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { db, auth } from "../firebaseConfig"; // Asegúrate de importar auth de Firebase
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
@@ -61,37 +61,40 @@ function Expenses() {
   }, [userId]); // Ejecuta nuevamente si userId cambia
 
   return (
-    <div style={{ margin: "20px" }}>
-      <h2>Registrar Gasto</h2>
+    <div>
+      <h2 style={{ textAlign: 'center' }}>Registrar Gasto</h2>
       <input
         type="text"
         placeholder="Nombre"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        className="input-field"
       />
       <input
         type="text"
         placeholder="Detalle"
         value={detail}
         onChange={(e) => setDetail(e.target.value)}
+        className="input-field"
       />
       <input
         type="number"
         placeholder="Monto"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
+        className="input-field"
       />
-      <button onClick={addExpense}>Registrar</button>
+      <button onClick={addExpense} className="button" style={{ marginTop: '10px' }}>Registrar</button>
 
-      <h3>Listado de Gastos</h3>
+      <h3 style={{ marginTop: '50px', textAlign: 'center' }}>Listado de Gastos</h3>
       {loading ? (
         <p>Cargando gastos...</p>
       ) : expenses.length > 0 ? (
-        <ul>
+        <ul className="expenses-list">
           {expenses.map((expense) => (
-            <li key={expense.id}>
+            <li key={expense.id} className="expense-item">
               <Link to={`/expenses/${expense.id}`}>
-                <strong>{expense.name}</strong> - ARS {expense.amount} - {expense.detail}
+                <strong>{expense.name}</strong> - ARS {expense.amount} - {expense.detail ? expense.detail + ' - ' : ''} {expense.isFinalized ? '[Finalizado]' : '[Pendiente]'}
               </Link>
             </li>
           ))}

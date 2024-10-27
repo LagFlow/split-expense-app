@@ -1,0 +1,129 @@
+:root {
+  --background-color: #000000; /* Color oscuro de fondo */
+  --primary-text-color: #ffffff; /* Color de texto principal */
+  --accent-color: #e63946; /* Rojo para acentos */
+  --secondary-text-color: #a8a8a8; /* Color de texto secundario */
+  --button-background: #333333; /* Fondo para botones */
+  --button-hover: #444444; /* Fondo para hover en botones */
+  --border-radius: 8px; /* Bordes redondeados */
+  --spacing: 16px; /* Espaciado base */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  z-index: 2; /* Asegura que el NavBar esté encima del resto del contenido */
+}
+
+.main-content {
+  margin-top: 60px; /* Espacio para evitar que el contenido se superponga con el NavBar */
+}
+
+
+h2, h3 {
+  color: var(--accent-color);
+}
+
+input, button {
+  font-family: inherit;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--button-background);
+  color: var(--primary-text-color);
+}
+
+.button {
+  padding: 10px;
+  background-color: var(--accent-color);
+  color: var(--primary-text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.button-secondary {
+  padding: 10px;
+  background-color: var(--secondary-text-color);
+  color: var(--primary-text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.button-logout {
+  padding: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.button:hover, .button-secondary:hover, .button-logout:hover {
+  background-color: var(--button-hover);
+}
+
+.button:disabled {
+  background-color: #8a3c43;
+  cursor: not-allowed;
+}
+
+.expenses-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.expense-item {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: var(--border-radius);
+  background-color: var(--button-background);
+}
+
+.expense-item a {
+  color: var(--primary-text-color);
+  text-decoration: none;
+}
+
+.expense-item a:hover {
+  color: var(--accent-color);
+}
+
+.expense-details {
+  border-radius: var(--border-radius);
+  border: 1px solid #ffffff;
+  padding: 20px;
+}
